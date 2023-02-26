@@ -1,5 +1,5 @@
 <template >
-  <div class="container mt-6">
+  <div class="section mt-5">
     <h1 class="has-text-centered is-size-1 has-text-weight-bold">
       Create Account
     </h1>
@@ -20,31 +20,51 @@
     <div class="column is-half is-offset-one-quarter">
       <label class="label">First Name</label>
       <div class="control">
-        <input class="input" type="text" placeholder="First Name" v-model="firstname"/>
+        <input
+          class="input"
+          type="text"
+          placeholder="First Name"
+          v-model="firstname"
+        />
       </div>
     </div>
     <div class="column is-half is-offset-one-quarter">
       <label class="label">Last Name</label>
       <div class="control">
-        <input class="input" type="text" placeholder="Last Name" v-model="lastname"/>
+        <input
+          class="input"
+          type="text"
+          placeholder="Last Name"
+          v-model="lastname"
+        />
       </div>
     </div>
     <div class="column is-half is-offset-one-quarter">
       <label class="label">Email</label>
       <div class="control">
-        <input class="input" type="text" placeholder="Email" v-model="email"/>
+        <input class="input" type="text" placeholder="Email" v-model="email" />
       </div>
     </div>
     <div class="column is-half is-offset-one-quarter">
       <label class="label">Password</label>
       <div class="control">
-        <input class="input" type="text" placeholder="Password" v-model="password"/>
+        <input
+          class="input"
+          type="text"
+          placeholder="Password"
+          v-model="password"
+        />
       </div>
     </div>
     <div class="column is-half is-offset-one-quarter">
       <label class="label">Confirm Password</label>
       <div class="control">
-        <input class="input" type="text" placeholder="Confirm Password" v-model="confirmpassword"/>
+        <input
+          class="input"
+          type="text"
+          placeholder="Confirm Password"
+          v-model="confirmpassword"
+        />
       </div>
     </div>
 
@@ -61,14 +81,14 @@
 <script>
 export default {
   name: "App",
-  data(){
-    return{
-      firstname:"",
-      lastname:"",
-      email:"",
-      password:"",
-      confirmpassword:""
-    }
-  }
+  data() {
+    return {
+      firstname: "",
+      lastname: "",
+      email: "",
+      password: "",
+      confirmpassword: "",
+    };
+  },
 };
 </script>
