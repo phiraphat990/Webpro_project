@@ -42,7 +42,7 @@
     <div class="column is-half is-offset-one-quarter">
       <label class="label">Email</label>
       <div class="control">
-        <input class="input" type="text" placeholder="Email" v-model="email" />
+        <input class="input" type="email" placeholder="Email" v-model="email" />
       </div>
     </div>
     <div class="column is-half is-offset-one-quarter">
@@ -50,7 +50,7 @@
       <div class="control">
         <input
           class="input"
-          type="text"
+          type="password"
           placeholder="Password"
           v-model="password"
         />
@@ -61,7 +61,7 @@
       <div class="control">
         <input
           class="input"
-          type="text"
+          type="password"
           placeholder="Confirm Password"
           v-model="confirmpassword"
         />
@@ -70,7 +70,7 @@
 
     <div class="control has-text-centered">
       <button
-        class="button has-background-success-dark has-text-white has-text-weight-bold"
+        class="button has-background-success-dark has-text-white has-text-weight-bold is-rounded"
       >
         CREATE
       </button>

@@ -11,7 +11,7 @@
             Prices, Community, Education and Mental Health.
           </p>
           <div class="has-text-centered">
-            <button class="button is-warning  has-text-weight-bold"><router-link to="/allProduct" class="has-text-danger">BUY NOW</router-link></button>
+            <button class="button is-warning  has-text-weight-bold is-rounded"><router-link to="/allProduct" class="has-text-danger">BUY NOW</router-link></button>
           </div>
         </div>
       </div>

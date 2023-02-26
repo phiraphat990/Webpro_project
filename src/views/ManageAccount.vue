@@ -20,7 +20,7 @@
         </div>
 
         <div class="has-text-centered">
-            <button class="button is-warning  has-text-weight-bold">Edit</button>
+            <button class="button is-warning  has-text-weight-bold is-rounded">Edit</button>
           </div>
 
       </div>
@@ -31,12 +31,12 @@
         <div class="pt-6 pb-6 ml-6 mr-6">
           <div class="column">
             <label class="label">First Name</label>
-            <div>
+            <div >
               <input
                 class="input"
                 type="text"
                 placeholder="First Name"
-                readonly
+               :disabled="disabled"
               />
             </div>
           </div>
@@ -48,7 +48,7 @@
                 class="input"
                 type="text"
                 placeholder="Last Name"
-                readonly
+               :disabled="disabled"
               />
             </div>
           </div>
@@ -60,7 +60,7 @@
                 class="input"
                 type="text"
                 placeholder="Phone Number"
-                readonly
+               :disabled="disabled"
               />
             </div>
           </div>
@@ -69,14 +69,17 @@
             <label class="label">Email</label>
             <div>
               <input class="input" 
-                type="text" 
+                type="email" 
                 placeholder="Email" 
-                readonly />
+               :disabled="disabled"
+                />
             </div>
           </div>
 
-          <div class="has-text-centered">
-            <button class="button is-warning  has-text-weight-bold" @click="Edit()">Edit</button>
+          <div class="level">
+            <button class="button is-danger  has-text-weight-bold is-rounded" @click="disabled = false">Edit</button>
+            <button class="button is-info  has-text-weight-bold is-rounded" @click="disabled = true">Save</button>
+            <button class="button is-warning  has-text-weight-bold is-rounded" >Update</button>
           </div>
 
         </div>
@@ -89,13 +92,10 @@
 export default {
   data(){
     return{
-      readonly: false
+      disabled: true
     }
   },
   methods:{
-    Edit(){
-      this.readonly = true;
-    }
   }
 };
 </script>

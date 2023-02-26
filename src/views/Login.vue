@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="has-background-info">
+  <div >
     <div class="section mt-6">
       <h1 class="has-text-centered is-size-1 has-text-weight-bold">Login</h1>
       <div class="column is-half is-offset-one-quarter">
@@ -19,7 +19,7 @@
         <div>
           <input
             class="input"
-            type="text"
+            type="password"
             placeholder="Password"
             v-model="password"
           />
@@ -31,7 +31,7 @@
       </div>
 
       <div class="has-text-centered">
-        <button class="button has-background-success-dark has-text-weight-bold">
+        <button class="button has-background-success-dark has-text-weight-bold is-rounded">
           <router-link to="/allProduct" class="has-text-white"
             >SIGN IN
           </router-link>
