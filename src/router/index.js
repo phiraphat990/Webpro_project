@@ -30,6 +30,16 @@ const routes = [
         path: '/manageAccount',
         name: 'ManageAccount',
         component: () => import('../views/ManageAccount.vue') // set home as path '/'
+    },
+    {
+        path: '/checkInvoice',
+        name: 'CheckInvoice',
+        component: () => import('../views/CheckInvoice.vue') // set home as path '/'
+    },
+    {
+        path: '/checkOrder',
+        name: 'CheckOrder',
+        component: () => import('../views/CheckOrder.vue') // set home as path '/'
     }
 ]
 

@@ -34,7 +34,7 @@
                 <div style="justify-content: space-between" class="level-right">
                   <!-- info -->
                   <div
-                    @click="modal_confirm_order = !modal_confirm_order">
+                    @click="ShowInfo(value)">
                     <button class="button has-background-info is-rounded">
                       Info
                     </button>
@@ -57,6 +57,22 @@
     </div>
 
     <!-- Modal -->
+    <!-- <div class="modal" :class="{ 'is-active': modal_confirm_order }">
+      <div
+        class="modal-background"
+        @click="modal_confirm_order = !modal_confirm_order"
+      ></div>
+      <div
+        class="modal-card"
+        style="max-width: 960px; width: 90%"
+      >
+        <section class="modal-card-body">
+          <img :src="info.image">
+          <p id="title2" class="title is-5">{{ info.title }}</p>
+        </section>
+      </div>
+    </div> -->
+
     <div class="modal" :class="{ 'is-active': modal_confirm_order }">
       <div
         class="modal-background"
@@ -65,16 +81,14 @@
       <div
         class="modal-card"
         style="max-width: 960px; width: 90%"
-        v-for="(value, index) in products"
-        :key="index"
       >
         <section class="modal-card-body">
-          <img :src="value.image">
-          <p id="title2" class="title is-5">{{ value.id }}</p>
+          <img :src="info.image">
+          <p id="title2" class="title is-5">{{ info.title }}</p>
         </section>
       </div>
     </div>
-
+    
     <!-- Column แสดงตะกร้า--------------------------------------------------->
     <div class="column is-4 pt-6 pr-5 has-background-primary-light">
       <div style="display: flex; justify-content: space-between">
@@ -122,12 +136,13 @@
         </div>
       </div>
       <div
-        style="
+     
+      >
+      <!-- style="
           display: flex;
           justify-content: space-between;
           font-size: 1.25rem;
-        "
-      >
+        " -->
         <span class="has-text-weight-bold">Total</span>
         <span id="totalPrice">{{ totalPrice }}</span>
       </div>
@@ -146,6 +161,7 @@ export default {
       show_modal: false,
       modal_confirm_order: false,
       show_modal: false,
+      info: {id: 0, image: ''}, //เลือกตัวไหนไว้ ให้แสดง modal กดแล้วเปลี่ยน
       products: [
         {
           id: 1,
@@ -233,8 +249,9 @@ export default {
       this.cart.splice(index, 1);
       product.quantity = 0;
     },
-    fill(index) {
-      return this.products.filter((data) => data.id.includes(index));
+    ShowInfo(value) {
+      this.modal_confirm_order = !this.modal_confirm_order
+      this.info = value;
     },
   },
   computed: {

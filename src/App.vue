@@ -33,8 +33,8 @@
           <a class="navbar-item"> <router-link to="/">Home</router-link> </a>
 
           <a class="navbar-item"> <router-link to="/allProduct">All Plants</router-link> </a>
-          <a class="navbar-item"> Check Order </a>
-          <a class="navbar-item"> Check Payment </a>
+          <a class="navbar-item" v-show="role"> <router-link to="/checkOrder">Check Order </router-link></a>
+          <a class="navbar-item" v-show="role"> <router-link to="/checkInvoice">Check Payment </router-link> </a>
 
           <!-- <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link"> Check Order </a>
@@ -45,7 +45,7 @@
             </div>
           </div> -->
 
-          <a class="navbar-item"> News </a>
+          <a class="navbar-item" > News </a>
 
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
@@ -83,7 +83,9 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      role: 'seller'
+    };
   },
 };
 </script>
