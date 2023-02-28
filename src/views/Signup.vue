@@ -7,11 +7,9 @@
     <div class="column is-half is-offset-one-quarter">
       <div class="control">
         <label class="radio">
-          <input type="radio" name="role" />
+          <input type="radio" name="role" value="seller" v-model="role"/>
           Seller
-        </label>
-        <label class="radio">
-          <input type="radio" name="role" />
+          <input type="radio" name="role" value="customer" v-model="role"/>
           Customer
         </label>
       </div>
@@ -83,6 +81,7 @@ export default {
   name: "App",
   data() {
     return {
+      role: "",
       firstname: "",
       lastname: "",
       email: "",

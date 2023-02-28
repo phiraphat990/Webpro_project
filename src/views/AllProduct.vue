@@ -4,9 +4,10 @@
     <div class="column"></div>
 
     <!-- Column แสดงสินค้า--------------------------------------------------------->
-    <div class="column is-7 pt-6 mr-6">
+    <div class="column is-12 pt-6 mr-6">
       <h1 class="is-size-5 mr-6 mb-2">All Products ({{ products.length }})</h1>
-      <div class="container is-max-desktop">
+      <div><button @click="modal_cart = !modal_cart">Show Cart {{ cart.length }}</button></div>
+      <div class="container">
         <div class="is-multiline columns is-variable is-2">
           <!-- Card element start here------------------------------------------>
           <div
@@ -15,7 +16,7 @@
             v-for="(value, index) in products"
             :key="index"
           >
-            <div >
+            <div class="box">
               <div class="card-image">
                 <figure class="image is-1by1">
                   <img :src="value.image" alt="Placeholder image" />
@@ -25,7 +26,7 @@
                 <div class="media">
                   <div class="media-content">
                     <p id="title" class="title is-5">{{ value.title }}</p>
-                    <p id="price" class="price is-5 has-text-danger">{{ value.price }}</p>
+                    <p id="price" class="price is-5 has-text-danger">Price {{ value.price }} Bath</p>
                   </div>
                 </div>
               </div>
@@ -56,41 +57,39 @@
       </div>
     </div>
 
-    <!-- Modal -->
-    <!-- <div class="modal" :class="{ 'is-active': modal_confirm_order }">
+    <!-- Modal info-->
+    <div class="modal" :class="{ 'is-active': modal_info }">
       <div
         class="modal-background"
-        @click="modal_confirm_order = !modal_confirm_order"
+        @click="modal_info = !modal_info"
       ></div>
       <div
         class="modal-card"
         style="max-width: 960px; width: 90%"
       >
         <section class="modal-card-body">
-          <img :src="info.image">
-          <p id="title2" class="title is-5">{{ info.title }}</p>
-        </section>
-      </div>
-    </div> -->
-
-    <div class="modal" :class="{ 'is-active': modal_confirm_order }">
-      <div
-        class="modal-background"
-        @click="modal_confirm_order = !modal_confirm_order"
-      ></div>
-      <div
-        class="modal-card"
-        style="max-width: 960px; width: 90%"
-      >
-        <section class="modal-card-body">
-          <img :src="info.image">
-          <p id="title2" class="title is-5">{{ info.title }}</p>
+          <p id="title2" class="title">{{ info.title }}</p>
+          <div class="level">
+          <img :src="info.image" style="width: 300px; height: 300px;">
+          <p id="info" class="is-4">{{ info.detail }}</p>
+          </div>
         </section>
       </div>
     </div>
-    
-    <!-- Column แสดงตะกร้า--------------------------------------------------->
-    <div class="column is-4 pt-6 pr-5 has-background-primary-light">
+
+    <!-- Modal Cart-->
+    <div class="modal" :class="{ 'is-active': modal_cart }">
+      <div
+        class="modal-background"
+        @click="modal_cart = !modal_cart"
+      ></div>
+      <div
+        class="modal-card"
+        style="max-width: 960px; width: 50%"
+      >
+        <section class="modal-card-body">
+              <!-- Column แสดงตะกร้า--------------------------------------------------->
+    <div class="column is-12 pt-6 pr-5 has-background-primary-light">
       <div style="display: flex; justify-content: space-between">
         <span class="is-size-4 mb-4">Cart ({{ cart.length }})</span>
         <a class="is-danger mb-4 button" @click="cart = []">Clear</a>
@@ -114,11 +113,12 @@
                 </div>
                 <div style="display: flex; justify-content: space-between">
                   <!-- ลดสินค้า------------------------------------------------ -->
-                  <button @click="product.quantity--">-</button>
+                  <button @click="quantityLob(product, index)">-</button>
                    <!-- จำนวนสินค้า----------------------------------------------- -->
                    <p>{{ product.quantity }}</p>
                   <!-- เพิ่มสินค้า----------------------------------------------- -->
-                  <button @click="product.quantity++">+</button>
+                  <button @click="quantityPlush(product)">+</button>
+                  <span>{{product.price * product.quantity}}</span>
                 </div>
                 <div>
                   <!-- icon รูปถังขยะ------------------------------------------- -->
@@ -135,19 +135,19 @@
           </div>
         </div>
       </div>
-      <div
-     
-      >
-      <!-- style="
-          display: flex;
-          justify-content: space-between;
-          font-size: 1.25rem;
-        " -->
+      <div class="level">
         <span class="has-text-weight-bold">Total</span>
         <span id="totalPrice">{{ totalPrice }}</span>
       </div>
-      <button class="has-text-centered">Check out</button>
+      <button @click="gotoPay()"><router-link to="/payment" class="has-text-black">go to PayMent</router-link></button>
     </div>
+        </section>
+      </div>
+    </div>
+
+
+
+
   </div>
 </template>
 
@@ -159,15 +159,17 @@ export default {
       shopName: "Sunthorn Shop",
       cart: [],
       show_modal: false,
-      modal_confirm_order: false,
+      modal_info: false,
+      modal_cart: false,
       show_modal: false,
-      info: {id: 0, image: ''}, //เลือกตัวไหนไว้ ให้แสดง modal กดแล้วเปลี่ยน
+      info: {id: 0, image: '',detail: ''}, //เลือกตัวไหนไว้ ให้แสดง modal กดแล้วเปลี่ยน
       products: [
         {
           id: 1,
-          title: "Vriesea 'Pink Cockatoo'1",
+          title: "Pink Cockatoo",
           price: 350,
           quantity: 0,
+          detail:'is a compact, small -sized species from Brazil that has green foliage with maroon centers',
           image:
             "https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_73dcd44c-6947-43cf-a2fc-f64f2c52e387_360x.jpg?v=1676495614",
         },
@@ -176,14 +178,16 @@ export default {
           title: "Euphorbia ingens",
           price: 400,
           quantity: 0,
+          detail:'Euphorbia ingens is a species of flowering plant in the family Euphorbiaceae. It is native to dry areas of southern Africa.',
           image:
             "https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_f425b9f1-f593-4164-9ae3-da7c027f79b2_360x.jpg?v=1672342192",
         },
         {
           id: 3,
-          title: "Sand Rose Succulent ",
+          title: "Sand Rose Succulent",
           price: 250,
           quantity: 0,
+          detail:'Adenium obesum is a poisonous species of flowering plant belonging to the tribe Nerieae of the subfamily Apocynoideae of the dogbane family',
           image:
             "https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_d46392c1-41ed-49ef-a1e9-62fa6b1de436_360x.jpg?v=1676495623",
         },
@@ -192,48 +196,54 @@ export default {
           title: "Pacific Maidenhair Fern",
           price: 590,
           quantity: 0,
+          detail:'the maidenhair fern, is a genus of about 250 species of ferns in the subfamily Vittarioideae of the family Pteridaceae',
           image:
             "https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_a3c29169-024b-48de-84df-4eed9b1c4094_360x.jpg?v=1675887180",
         },
         {
           id: 5,
-          title: "Pacific Maidenhair Fern",
+          title: "Big Red Bird",
           price: 120,
           quantity: 0,
+          detail:'Huge, Showy Red Leaves. Loves a bright-filtered light and wants to be moist but not wet.',
           image:
-            "https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_a3c29169-024b-48de-84df-4eed9b1c4094_360x.jpg?v=1675887180",
+            "https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_2de0efbf-3899-4748-aefe-25017ea8d1d4_540x.jpg?v=1667414207",
         },
         {
           id: 6,
-          title: "Bird's Nest Fern 'Champion'",
+          title: "Tahiti",
           price: 180,
           quantity: 0,
+          detail:'is a species of plant in the family Rubiaceae. It is an evergreen tropical shrub that grows to 4 m (10 ft) tall',
           image:
-            "https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_02ad2546-181a-4528-8f7b-d38acac55982_360x.jpg?v=1674677512",
+            "https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_b7ae8132-8dad-43da-9dbd-b265af9c397c_1024x1024@2x.jpg?v=1674677519",
         },
         {
           id: 7,
-          title: "Vriesea fenestralis",
+          title: "Calathea 'Misto'",
           price: 140,
           quantity: 0,
+          detail:'Calathea leaves are often large and colorfully patterned.The leaves are often variegated with bright colors such as pink, orange, red, and white.',
           image:
-            "https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_70485af9-45d8-45bc-85e1-9da8c5d7b386_360x.jpg?v=1671051183",
+            "https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_f887ed49-396a-44c2-b432-0951ac4246ad_1024x1024@2x.jpg?v=1675887210",
         },
         {
           id: 8,
-          title: "Bird's Nest Fern 'Champion'",
+          title: "Alocasia cucullata",
           price: 200,
           quantity: 0,
+          detail:'This aroid plant is a perennial herb producing thick, erect stems up to 6 centimeters wide that branch from the bases and grow up to a meter tall',
           image:
-            "https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_02ad2546-181a-4528-8f7b-d38acac55982_360x.jpg?v=1674677512",
+            "https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_5ff47f45-b9db-48b1-851b-0196edcc7038_1024x1024@2x.jpg?v=1677100166",
         },
         {
           id: 9,
-          title: "Vriesea fenestralis",
+          title: "Velvet Moon Inch Plant",
           price: 120,
           quantity: 0,
+          detail:'Tradescantia zebrina has attractive zebra-patterned leaves, the upper surface showing purple new growth and green older growth parallel to the central axis, as well as two broad silver-colored stripes on the outer edges',
           image:
-            "https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_70485af9-45d8-45bc-85e1-9da8c5d7b386_360x.jpg?v=1671051183",
+            "https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_5a5ef493-e85a-47fd-9461-14c28f7f764f_1024x1024@2x.jpg?v=1675887192",
         },
       ],
     };
@@ -243,6 +253,7 @@ export default {
       if (value.quantity === 0) {
         this.cart.push(value);
       }
+      console.log(this.cart)
       value.quantity++;
     },
     removeFromCart(index, product) {
@@ -250,8 +261,21 @@ export default {
       product.quantity = 0;
     },
     ShowInfo(value) {
-      this.modal_confirm_order = !this.modal_confirm_order
+      this.modal_info = !this.modal_info
       this.info = value;
+    },
+    gotoPay(){
+      localStorage.setItem("allCart", JSON.stringify(this.cart));
+    },
+    quantityLob(product, index) {
+      product.quantity--;
+      if (product.quantity <= 0) {
+        // product.quantity = 0;
+        this.cart.splice(index, 1);
+      }
+    },
+    quantityPlush(product) {
+      product.quantity++;
     },
   },
   computed: {
@@ -261,7 +285,7 @@ export default {
         total += this.cart[i].price * this.cart[i].quantity;
       }
       return total;
-    },
+    }
   },
 };
 </script>

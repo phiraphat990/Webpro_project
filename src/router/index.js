@@ -40,6 +40,11 @@ const routes = [
         path: '/checkOrder',
         name: 'CheckOrder',
         component: () => import('../views/CheckOrder.vue') // set home as path '/'
+    },
+    {
+        path: '/payment',
+        name: 'Payment',
+        component: () => import('../views/Payment.vue') // set home as path '/'
     }
 ]
 

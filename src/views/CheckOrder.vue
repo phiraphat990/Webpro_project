@@ -1,7 +1,7 @@
 <template>
   <section class="column is-half is-offset-one-quarter has-background-info mt-6">
     <div>
-      <table>
+      <table class="table table is-striped">
         <tr>
           <th>ID</th>
           <th>First Name</th>

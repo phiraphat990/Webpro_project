@@ -1,0 +1,93 @@
+    <!-- Column แสดงตะกร้า--------------------------------------------------->
+    <div class="column is-4 pt-6 pr-5 has-background-primary-light">
+      <div style="display: flex; justify-content: space-between">
+        <span class="is-size-4 mb-4">Cart ({{ cart.length }})</span>
+        <a class="is-danger mb-4 button" @click="cart = []">Clear</a>
+      </div>
+
+      <!-- Card element start here------------------------------------------>
+      <div v-for="(product, index) in cart" :key="index" class="card mb-4">
+        <div class="card-content p-0">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-96x96">
+                <img :src="product.image" alt="Placeholder image" />
+              </figure>
+            </div>
+            <div class="media-content pt-2">
+              <p class="is-5">{{ product.title }}</p>
+              <div style="display: flex; justify-content: space-between">
+                <div>
+                  <!-- ราคาสินค้า------------------------------------------------ -->
+                  <span class="is-6">{{ product.price }}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between">
+                  <!-- ลดสินค้า------------------------------------------------ -->
+                  <button @click="product.quantity--">-</button>
+                   <!-- จำนวนสินค้า----------------------------------------------- -->
+                   <p>{{ product.quantity }}</p>
+                  <!-- เพิ่มสินค้า----------------------------------------------- -->
+                  <button @click="product.quantity++">+</button>
+                </div>
+                <div>
+                  <!-- icon รูปถังขยะ------------------------------------------- -->
+                  <span
+                    class="icon mr-2"
+                    key="false"
+                    @click="removeFromCart(index, product)"
+                  >
+                    <button>del</button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+     
+      >
+       <!-- style="
+          display: flex;
+          justify-content: space-between;
+          font-size: 1.25rem;
+        " -->
+        <span class="has-text-weight-bold">Total</span>
+        <span id="totalPrice">{{ totalPrice }}</span>
+      </div>
+      <button class="has-text-centered">Pay</button>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="media-left">
+                <figure class="image is-96x96">
+                  <img :src="product.image" alt="Placeholder image" />
+                </figure>
+              </div>
+              <div class="media-content pt-2">
+                <p class="is-5">{{ product.title }}</p>
+                <div >
+                  <div>
+                    <!-- ราคาสินค้า------------------------------------------------ -->
+                    <span class="is-6 has-text-danger"
+                      >{{ product.price }}
+                    </span>
+                  </div>
+                  <div style="justify-content: center; display: flex;">
+                    <!-- ลดสินค้า------------------------------------------------ -->
+                    <button @click="quantityLob(product, index)">-</button>
+                    <!-- จำนวนสินค้า----------------------------------------------- -->
+                    <p>{{ product.quantity }}</p>
+                    <!-- เพิ่มสินค้า----------------------------------------------- -->
+                    <button @click="quantityPlush(product)">+</button>
+                    <span>{{product.price * product.quantity}}</span>
+                  </div>
+                </div>
+              </div>
