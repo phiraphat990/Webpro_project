@@ -31,7 +31,7 @@
       </div>
 
       <div class="has-text-centered">
-        <button class="button has-background-success-dark has-text-weight-bold is-rounded">
+        <button class="button has-background-success-dark has-text-weight-bold is-rounded" @click="status = true">
           <router-link to="/allProduct" class="has-text-white"
             >SIGN IN
           </router-link>
@@ -54,11 +54,8 @@ export default {
     return {
       email: "",
       password: "",
+      status: false
     };
   },
 };
 </script>
-
-<style>
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
-</style>

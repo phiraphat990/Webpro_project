@@ -2,7 +2,8 @@
  <template>
   <div id="app">
     <nav
-      class="navbar" style="background-color: #8DB596;"
+      class="navbar"
+      style="background-color: #8db596"
       role="navigation"
       aria-label="main navigation"
     >
@@ -32,9 +33,15 @@
         <div class="navbar-start">
           <a class="navbar-item"> <router-link to="/">Home</router-link> </a>
 
-          <a class="navbar-item"> <router-link to="/allProduct">All Plants</router-link> </a>
-          <a class="navbar-item" v-show="role"> <router-link to="/checkOrder">Check Order </router-link></a>
-          <a class="navbar-item" v-show="role"> <router-link to="/checkInvoice">Check Payment </router-link> </a>
+          <a class="navbar-item" v-if="!role">
+            <router-link to="/allProduct">All Plants</router-link>
+          </a>
+          <a class="navbar-item" v-show="role">
+            <router-link to="/checkOrder">Check Order </router-link></a
+          >
+          <a class="navbar-item" v-show="role">
+            <router-link to="/checkInvoice">Check Payment </router-link>
+          </a>
 
           <!-- <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link"> Check Order </a>
@@ -45,7 +52,7 @@
             </div>
           </div> -->
 
-          <a class="navbar-item" > News </a>
+          <a class="navbar-item"> News </a>
 
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
@@ -57,7 +64,11 @@
               </figure>
             </a>
             <div class="navbar-dropdown">
-              <a class="navbar-item"><router-link to="/manageAccount">Manage Account </router-link></a>
+              <a class="navbar-item"
+                ><router-link to="/manageAccount"
+                  >Manage Account
+                </router-link></a
+              >
               <a class="navbar-item"> Log out </a>
             </div>
           </div>
@@ -65,18 +76,21 @@
 
         <div class="navbar-end">
           <div class="navbar-item">
-            <div class="buttons">
+            <div class="buttons" v-if="!role">
+              <a class="button is-light">
+                <router-link to="/login">Log in</router-link></a
+              >
+            </div>
+            <div v-if="role">
               <a class="button is-primary">
                 <strong><router-link to="/signup">Sign up</router-link></strong>
               </a>
-              <a class="button is-light"> <router-link to="/login">Log in</router-link></a>
             </div>
           </div>
         </div>
       </div>
     </nav>
     <router-view :key="$route.fullPath" />
-
   </div>
 </template>
 
@@ -84,7 +98,7 @@
 export default {
   data() {
     return {
-      role: 'seller'
+      role: "seller",
     };
   },
 };

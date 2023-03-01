@@ -103,27 +103,48 @@
         </div>
       </div>
 
-      <hr />
-
+              <!-- ที่อยู่ -->
       <h1 class="is-size-4">User Info</h1>
       <div class="columns">
                 <div class="column">
-                    <label class="label">ที่อยู่</label>
-                    <textarea class="textarea" placeholder="e.g. บ้านเลขที่ 123 ลาดกระบัง ...."  v-model="address"></textarea>
-                    <p>{{typing}}</p>
+                    <label class="label">ชื่อผู้รับ - ที่อยู่</label>
+                    <textarea class="textarea" placeholder="ชื่อ - นามสกุล ที่อยู่..............."  v-model="userInfo"></textarea>
+                    <p></p>
                 </div>
             </div>
       <br />
-      <h1 class="is-size-4">Address Info</h1><br>
-            <div class="columns">
-                <div class="column">
-                    <label class="label">ที่อยู่</label>
-                    <textarea class="textarea" placeholder="e.g. บ้านเลขที่ 123 ลาดกระบัง ...."  v-model="address"></textarea>
-                    <p>{{typing}}</p>
-                </div>
-            </div>
+
+      <button @click="modal_confirm= !modal_confirm, info.push(userInfo)">Check out</button>
+
+
+          <!-- Modal confirm-->
+    <div class="modal" :class="{ 'is-active': modal_confirm }">
+      <div class="modal-background" @click="modal_confirm = !modal_confirm"></div>
+      <div class="modal-card" style="max-width: 960px; width: 50%">
+        <section class="modal-card-body" v-for="infomation, index in info" :key="index">
+          <p id="info" class="is-4">รายละเอียดผู้รับ</p>
+          <p>{{ infomation }}</p>
+
+          <p class="is-4">รายการสินค้า</p>
+          <div class="level" v-for="value, index in cart" :key="index">
+            <p>{{ value.title }}</p>
+            <p class="is-4">จำนวน</p>
+            <p>{{ value.quantity }}</p>
+          </div>
+          
+          <input type="file" name="slip">
+            <button @click="modal_confirm = false, index"> Cancel</button>
+            <button @click="Confirm()"><router-link to="/allProduct"> Confirm</router-link></button>
+        </section>
+      </div>
+    </div>
+
     </div>
   </div>
+
+
+
+  
 </template>
 
 <script>
@@ -131,6 +152,9 @@ export default {
   data() {
     return {
       cart: [],
+      userInfo:'',
+      modal_confirm: false,
+      info:[],
     };
   },
   created() {
@@ -149,6 +173,11 @@ export default {
       product.quantity++;
       localStorage.setItem("allCart", JSON.stringify(this.cart));
     },
+    Confirm(){
+      this.modal_confirm = false;
+      // localStorage.setItem("Confirm", JSON.stringify(this.));
+      // this.cart = []
+    }
   },
   computed: {
     Total() {
@@ -159,6 +188,13 @@ export default {
       return cost;
     },
   },
+  watch:{
+    modal_confirm(index){
+      if(this.modal_confirm == false){
+        this.info.splice(index, 1)
+      }
+    }
+  }
 };
 </script>
 

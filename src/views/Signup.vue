@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template >
   <div class="section mt-5">
     <h1 class="has-text-centered is-size-1 has-text-weight-bold">
@@ -7,9 +8,9 @@
     <div class="column is-half is-offset-one-quarter">
       <div class="control">
         <label class="radio">
-          <input type="radio" name="role" value="seller" v-model="role"/>
+          <input type="radio" name="role" value="seller" v-model="role" />
           Seller
-          <input type="radio" name="role" value="customer" v-model="role"/>
+          <input type="radio" name="role" value="customer" v-model="role" />
           Customer
         </label>
       </div>
@@ -69,6 +70,9 @@
     <div class="control has-text-centered">
       <button
         class="button has-background-success-dark has-text-white has-text-weight-bold is-rounded"
+        @click="
+          Signup(role, firstname, lastname, email, password, confirmpassword)
+        "
       >
         CREATE
       </button>
@@ -78,7 +82,6 @@
 
 <script>
 export default {
-  name: "App",
   data() {
     return {
       role: "",
@@ -87,7 +90,21 @@ export default {
       email: "",
       password: "",
       confirmpassword: "",
+      signup: [],
     };
+  },
+  methods: {
+    Signup(role, firstname, lastname, email, password, confirmpassword) {
+      this.signup.push({
+        role: role,
+        firstname: firstname,
+        lastname: lastname,
+        email: email,
+        password: password,
+        confirmpassword: confirmpassword,
+      });
+      // localStorage.setItem("allUser", JSON.stringify(this.signup));
+    },
   },
 };
 </script>
