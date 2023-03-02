@@ -40,7 +40,7 @@
             <router-link to="/checkOrder">Check Order </router-link></a
           >
           <a class="navbar-item" v-show="role">
-            <router-link to="/checkInvoice">Check Payment </router-link>
+            <router-link to="/addProduct">Add Products </router-link>
           </a>
 
           <!-- <div class="navbar-item has-dropdown is-hoverable">

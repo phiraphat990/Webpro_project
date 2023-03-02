@@ -3,6 +3,7 @@
   <div >
     <div class="section mt-6">
       <h1 class="has-text-centered is-size-1 has-text-weight-bold">Login</h1>
+      
       <div class="column is-half is-offset-one-quarter">
         <label class="label">Email</label>
         <div>
@@ -31,7 +32,7 @@
       </div>
 
       <div class="has-text-centered">
-        <button class="button has-background-success-dark has-text-weight-bold is-rounded" @click="status = true">
+        <button class="button has-background-success-dark has-text-weight-bold is-rounded" @click="gotoShop()">
           <router-link to="/allProduct" class="has-text-white"
             >SIGN IN
           </router-link>
@@ -54,8 +55,18 @@ export default {
     return {
       email: "",
       password: "",
-      status: false
+      user: [],
     };
+  },
+  methods: {
+    gotoShop() {
+      localStorage.setItem("user", JSON.stringify(this.user));
+      console.log(localStorage.setItem("user", JSON.stringify(this.user)))
+    },
+  },
+  created() {
+    this.user = JSON.parse(localStorage.getItem("allUser"));
+    console.log(this.user = JSON.parse(localStorage.getItem("allUser")))
   },
 };
 </script>

@@ -73,8 +73,9 @@
         @click="
           Signup(role, firstname, lastname, email, password, confirmpassword)
         "
-      >
-        CREATE
+      > <router-link to="/login" class="has-text-black"
+            >CREATE</router-link
+          >
       </button>
     </div>
   </div>
@@ -103,7 +104,7 @@ export default {
         password: password,
         confirmpassword: confirmpassword,
       });
-      // localStorage.setItem("allUser", JSON.stringify(this.signup));
+      localStorage.setItem("allUser", JSON.stringify(this.signup));
     },
   },
 };

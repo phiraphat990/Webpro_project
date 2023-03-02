@@ -80,8 +80,12 @@
 
     <!-- Modal info-->
     <div class="modal" :class="{ 'is-active': modal_info }">
-      <div class="modal-background" @click="modal_info = !modal_info"></div>
+      <div class="modal-background"></div>
       <div class="modal-card" style="max-width: 960px; width: 90%">
+        <header class="modal-card-head has-background-info-light">
+              <p class="modal-card-title">Infomation</p>
+              <button class="delete" aria-label="close" @click="modal_info = !modal_info"></button>
+            </header>
         <section class="modal-card-body">
           <p id="title2" class="title">{{ info.title }}</p>
           <div class="level">
@@ -94,8 +98,12 @@
 
     <!-- Modal Cart-->
     <div class="modal" :class="{ 'is-active': modal_cart }">
-      <div class="modal-background" @click="modal_cart = !modal_cart"></div>
+      <div class="modal-background"></div>
       <div class="modal-card" style="max-width: 960px; width: 50%">
+        <header class="modal-card-head has-background-warning-light">
+              <p class="modal-card-title">Cart</p>
+              <button class="delete" aria-label="close" @click="modal_cart = !modal_cart"></button>
+            </header>
         <section class="modal-card-body">
           <!-- Column แสดงตะกร้า---->
           <div class="column is-12 pt-6 pr-5 has-background-primary-light">
@@ -197,6 +205,7 @@ export default {
     ShowInfo(value) {
       this.modal_info = !this.modal_info;
       this.info = value;
+      console.log(this.info)
     },
     gotoPay() {
       localStorage.setItem("allCart", JSON.stringify(this.cart));

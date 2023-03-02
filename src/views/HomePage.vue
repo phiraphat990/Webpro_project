@@ -11,7 +11,10 @@
             Prices, Community, Education and Mental Health.
           </p>
           <div class="has-text-centered">
-            <button class="button is-warning  has-text-weight-bold is-rounded"><router-link to="/allProduct" class="has-text-danger">BUY NOW</router-link></button>
+            <button class="button is-warning  has-text-weight-bold is-rounded">
+              <router-link to="/allProduct" class="has-text-danger" v-if="status">BUY NOW</router-link>
+              <router-link to="/login" class="has-text-danger" v-else>Login</router-link>
+            </button>
           </div>
         </div>
       </div>
@@ -29,7 +32,10 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      status: true,
+
+    };
   },
 };
 </script>

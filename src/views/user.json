@@ -1,20 +1,20 @@
 [
     {
        "id":1,
-       "first_name":"Pink Cockatoo",
-       "last_name":350,
-       "Phone":0,
-       "email":"hoya",
-       "detail":"is a compact, small -sized species from Brazil that has green foliage with maroon centers",
+       "first_name":"Phiraphat",
+       "last_name": "Kitpromphon",
+       "role": "seller",
+       "phone":"0953137777",
+       "email":"63070125@gmail.com",
        "image":"https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_73dcd44c-6947-43cf-a2fc-f64f2c52e387_360x.jpg?v=1676495614"
     },
     {
         "id":2,
-        "first_name":"Pink Cockatoo",
-        "last_name":350,
-        "Phone":0,
-        "email":"hoya",
-       "detail":"Euphorbia ingens is a species of flowering plant in the family Euphorbiaceae. It is native to dry areas of southern Africa.",
+        "first_name":"Sunthorn",
+        "last_name":"Nongsun",
+        "role":"customer",
+        "phone":"0953137111",
+        "email":"Sunthorn@gmail.com",
        "image":"https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_f425b9f1-f593-4164-9ae3-da7c027f79b2_360x.jpg?v=1672342192"
     }
   ]

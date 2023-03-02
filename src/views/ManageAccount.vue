@@ -29,16 +29,15 @@
         v-for="(user_info, index) in users"
         :key="index"
       >
-        <div class="pt-6 pb-6 ml-6 mr-6">
+        <div class="pt-6 pb-6 ml-6 mr-6" v-if="user_info.role == 'seller'">
           <div class="column">
             <label class="label">First Name</label>
             <div>
               <input
                 class="input"
                 type="text"
-                placeholder="First Name"
-                :disabled="disabled"
                 :value="user_info.first_name"
+                :disabled="disabled"
                 :v-model="e_first_name"
               />
             </div>
@@ -50,9 +49,8 @@
               <input
                 class="input"
                 type="text"
-                placeholder="Last Name"
-                :disabled="disabled"
                 :value="user_info.last_name"
+                :disabled="disabled"
                 :v-model="e_last_name"
               />
             </div>
@@ -64,9 +62,8 @@
               <input
                 class="input"
                 type="text"
-                placeholder="Phone Number"
-                :disabled="disabled"
                 :value="user_info.phone"
+                :disabled="disabled"
                 :v-model="e_phone"
               />
             </div>
@@ -78,9 +75,8 @@
               <input
                 class="input"
                 type="email"
-                placeholder="Email"
-                :disabled="disabled"
                 :value="user_info.email"
+                :disabled="disabled"
                 :v-model="e_email"
               />
             </div>
@@ -95,11 +91,12 @@
             </button>
             <button
               class="button is-info has-text-weight-bold is-rounded"
-              @click="Save()"
+              @click="Save(user_info)"
             >
               Save
             </button>
-            <button class="button is-warning has-text-weight-bold is-rounded">
+            <button class="button is-warning has-text-weight-bold is-rounded" 
+            @click="Update()">
               Update
             </button>
           </div>
@@ -110,6 +107,7 @@
 </template>
 
 <script>
+import userData from '../views/user.json'
 export default {
   data() {
     return {
@@ -118,19 +116,16 @@ export default {
       e_last_name: "",
       e_phone: "",
       e_email: "",
-      users: [
-        {
-          first_name: "phiraphat",
-          last_name: "kitpromphon",
-          phone: "0953137777",
-          email: "63070125@gmail.com",
-        },
-      ],
+      users: userData,
     };
   },
   methods: {
-    Save() {
+    Save(user_info) {
       this.disabled = true;
+      user_info.first_name = this.e_first_name
+      user_info.last_name = this.e_last_name
+      user_info.phone = this.e_phone
+      user_info.email = this.e_email
     },
   },
 };

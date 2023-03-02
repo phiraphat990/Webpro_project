@@ -32,11 +32,6 @@ const routes = [
         component: () => import('../views/ManageAccount.vue') // set home as path '/'
     },
     {
-        path: '/checkInvoice',
-        name: 'CheckInvoice',
-        component: () => import('../views/CheckInvoice.vue') // set home as path '/'
-    },
-    {
         path: '/checkOrder',
         name: 'CheckOrder',
         component: () => import('../views/CheckOrder.vue') // set home as path '/'
@@ -45,6 +40,11 @@ const routes = [
         path: '/payment',
         name: 'Payment',
         component: () => import('../views/Payment.vue') // set home as path '/'
+    },
+    {
+        path: '/addProduct',
+        name: 'Addproduct',
+        component: () => import('../views/AddProduct.vue') // set home as path '/'
     }
 ]
 
