@@ -11,9 +11,12 @@
             Prices, Community, Education and Mental Health.
           </p>
           <div class="has-text-centered">
+            <button class="button is-success has-text-weight-bold is-rounded mr-3">
+              <router-link to="/login" class="has-text-white">LOGIN</router-link>
+            </button>
+            
             <button class="button is-warning  has-text-weight-bold is-rounded">
-              <router-link to="/allProduct" class="has-text-danger" v-if="status">BUY NOW</router-link>
-              <router-link to="/login" class="has-text-danger" v-else>Login</router-link>
+              <router-link to="/signup" class="has-text-danger">SIGN UP</router-link>
             </button>
           </div>
         </div>

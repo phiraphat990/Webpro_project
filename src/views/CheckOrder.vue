@@ -1,6 +1,13 @@
 <template>
   <div>
     <h1 class="column has-text-centered mt-6 is-size-3">Check Order</h1>
+    <!-- Filter -->
+    <h1 class="ml-6 is-size-5">Filter by Status</h1>
+    <select name="" id="" class="ml-6" v-model="status">
+      <option value="">--------Status of Payment--------</option>
+      <option value="unpaid">unpaid</option>
+      <option value="approved_bill">approved_bill</option>
+    </select>
     <section class="column mt-3 ml-6 mr-6">
       <div>
         <table class="table table is-striped" style="width: 100%">
@@ -13,7 +20,7 @@
             <th>Details</th>
           </tr>
           <tr
-            v-for="(orderInfo, index) in OrderInfo"
+            v-for="(orderInfo, index) in FilterStatus"
             :key="index"
             :class="[
               orderInfo.status == 'unpaid'
@@ -26,7 +33,7 @@
             <td>{{ orderInfo.last_name }}</td>
             <td>{{ orderInfo.phone }}</td>
             <td>{{ orderInfo.status }}</td>
-            <td><button @click="Check(orderInfo)">Check dettails</button></td>
+            <td><button @click="Check(orderInfo)">Check details</button></td>
           </tr>
         </table>
       </div>
@@ -34,22 +41,29 @@
 
     <!-- Modal detials-->
     <div class="modal" :class="{ 'is-active': modal_detials }">
-          <div class="modal-background"></div>
-          <div class="modal-card">
-            <header class="modal-card-head has-background-primary-light">
-              <p class="modal-card-title">Detials</p>
-              <button class="delete" aria-label="close" @click="modal_detials = !modal_detials"></button>
-            </header>
-            <section class="modal-card-body">
-              <div class="content">
-                <span>ID {{ detail.id }}</span><br>
-                <span>Quantity {{ detail.quantity }}</span><br>
-                <span>Total Price {{ detail.total_price }}</span><br>
-              </div>
-            </section>
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head has-background-primary-light">
+          <p class="modal-card-title">Detials</p>
+          <button
+            class="delete"
+            aria-label="close"
+            @click="modal_detials = !modal_detials"
+          ></button>
+        </header>
+        <section class="modal-card-body">
+          <div class="content">
+            <span>ID {{ detail.id }}</span
+            ><br />
+            <span>Quantity {{ detail.quantity }}</span
+            ><br />
+            <span>Total Price {{ detail.total_price }}</span
+            ><br />
+          </div>
+        </section>
+      </div>
     </div>
   </div>
-    </div>
 </template>
 
 <script>
@@ -60,6 +74,7 @@ export default {
       OrderInfo: OrderInfo,
       detail: { id: "" },
       modal_detials: false,
+      status:''
     };
   },
   methods: {
@@ -69,6 +84,11 @@ export default {
       console.log(this.detail);
     },
   },
+  computed:{
+    FilterStatus(){
+      return this.OrderInfo.filter(data => data.status.includes(this.status))
+    }
+  }
 };
 </script>
 

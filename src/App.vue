@@ -1,5 +1,4 @@
-
- <template>
+<template>
   <div id="app">
     <nav
       class="navbar"
@@ -33,14 +32,14 @@
         <div class="navbar-start">
           <a class="navbar-item"> <router-link to="/">Home</router-link> </a>
 
-          <a class="navbar-item" v-if="!role">
+          <a class="navbar-item" v-if="role == 'customer'">
             <router-link to="/allProduct">All Plants</router-link>
           </a>
-          <a class="navbar-item" v-show="role">
+          <a class="navbar-item" v-if="role == 'seller'">
             <router-link to="/checkOrder">Check Order </router-link></a
           >
-          <a class="navbar-item" v-show="role">
-            <router-link to="/addProduct">Add Products </router-link>
+          <a class="navbar-item" v-if="role == 'seller'">
+            <router-link to="/manageProduct">Manage Products </router-link>
           </a>
 
           <!-- <div class="navbar-item has-dropdown is-hoverable">
@@ -52,7 +51,7 @@
             </div>
           </div> -->
 
-          <a class="navbar-item"> News </a>
+          <a class="navbar-item" v-if="role == 'customer'"> News </a>
 
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
@@ -69,7 +68,9 @@
                   >Manage Account
                 </router-link></a
               >
-              <a class="navbar-item"> Log out </a>
+              <a class="navbar-item"> <router-link to="/"
+                  >Log out
+                </router-link> </a>
             </div>
           </div>
         </div>
@@ -81,7 +82,7 @@
                 <router-link to="/login">Log in</router-link></a
               >
             </div>
-            <div v-if="role">
+            <div v-if="!role">
               <a class="button is-primary">
                 <strong><router-link to="/signup">Sign up</router-link></strong>
               </a>
@@ -98,11 +99,8 @@
 export default {
   data() {
     return {
-      role: "seller",
+      role:'seller'
     };
   },
 };
 </script>
-
-<style scoped>
-</style>

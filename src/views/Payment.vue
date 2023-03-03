@@ -26,11 +26,12 @@
                   <td>{{ product.price }}</td>
                   <td>
                     <div style="display: flex; justify-content: space-between">
-                      <button @click="quantityLob(product, index)">-</button>
+                      <!-- ลดสินค้า- -->
+                      <button @click="quantityDel(product, index)">-</button>
                       <!-- จำนวนสินค้า- -->
                       <p>{{ product.quantity }}</p>
                       <!-- เพิ่มสินค้า- -->
-                      <button @click="quantityPlush(product)">+</button>
+                      <button @click="quantityPlus(product)">+</button>
                     </div>
                   </td>
                   <td>{{ product.price * product.quantity }}</td>
@@ -44,7 +45,7 @@
       <div class="columns is-size-4">
         <div class="column is-1 is-offset-8">Total</div>
         <div class="column is-3 has-text-right">
-          <!-- Total here ---------------------------------------- -->
+          <!-- Total here ---- -->
           {{ Total }}
         </div>
       </div>
@@ -85,10 +86,10 @@
             v-for="(infomation, index) in info"
             :key="index"
           >
-            <p id="info" class="is-4">รายละเอียดผู้รับ</p>
+            <p id="info" class="is-4 has-text-link">รายละเอียดผู้รับ</p>
             <p>{{ infomation }}</p>
 
-            <p class="is-4">รายการสินค้า</p>
+            <p class="is-4 has-text-link">รายการสินค้า</p>
             <div class="level" v-for="(value, index) in cart" :key="index">
               <p>{{ value.title }}</p>
               <p class="is-4">จำนวน</p>
@@ -121,15 +122,15 @@ export default {
     this.cart = JSON.parse(localStorage.getItem("allCart"));
   },
   methods: {
-    quantityLob(product, index) {
+    quantityDel(product, index) {
       product.quantity--;
       if (product.quantity <= 0) {
-        // product.quantity = 0;
+        product.quantity = 0;
         this.cart.splice(index, 1);
       }
       localStorage.setItem("allCart", JSON.stringify(this.cart));
     },
-    quantityPlush(product) {
+    quantityPlus(product) {
       product.quantity++;
       localStorage.setItem("allCart", JSON.stringify(this.cart));
     },
@@ -137,7 +138,7 @@ export default {
       this.modal_confirm = false;
       // localStorage.setItem("Confirm", JSON.stringify(this.));
       // this.cart = []
-      localStorage.setItem("allOrder", JSON.stringify(this.cart, this.info)); // set json
+      // localStorage.setItem("allOrder", JSON.stringify(this.cart, this.info));
     },
   },
   computed: {

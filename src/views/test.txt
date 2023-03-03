@@ -1,103 +1,19 @@
-    <!-- Column แสดงตะกร้า--------------------------------------------------->
-    <div class="column is-4 pt-6 pr-5 has-background-primary-light">
-      <div style="display: flex; justify-content: space-between">
-        <span class="is-size-4 mb-4">Cart ({{ cart.length }})</span>
-        <a class="is-danger mb-4 button" @click="cart = []">Clear</a>
-      </div>
-
-      <!-- Card element start here------------------------------------------>
-      <div v-for="(product, index) in cart" :key="index" class="card mb-4">
-        <div class="card-content p-0">
-          <div class="media">
-            <div class="media-left">
-              <figure class="image is-96x96">
-                <img :src="product.image" alt="Placeholder image" />
-              </figure>
-            </div>
-            <div class="media-content pt-2">
-              <p class="is-5">{{ product.title }}</p>
-              <div style="display: flex; justify-content: space-between">
-                <div>
-                  <!-- ราคาสินค้า------------------------------------------------ -->
-                  <span class="is-6">{{ product.price }}</span>
-                </div>
-                <div style="display: flex; justify-content: space-between">
-                  <!-- ลดสินค้า------------------------------------------------ -->
-                  <button @click="product.quantity--">-</button>
-                   <!-- จำนวนสินค้า----------------------------------------------- -->
-                   <p>{{ product.quantity }}</p>
-                  <!-- เพิ่มสินค้า----------------------------------------------- -->
-                  <button @click="product.quantity++">+</button>
-                </div>
-                <div>
-                  <!-- icon รูปถังขยะ------------------------------------------- -->
-                  <span
-                    class="icon mr-2"
-                    key="false"
-                    @click="removeFromCart(index, product)"
-                  >
-                    <button>del</button>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-     
-      >
-       <!-- style="
-          display: flex;
-          justify-content: space-between;
-          font-size: 1.25rem;
-        " -->
-        <span class="has-text-weight-bold">Total</span>
-        <span id="totalPrice">{{ totalPrice }}</span>
-      </div>
-      <button class="has-text-centered">Pay</button>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="media-left">
-                <figure class="image is-96x96">
-                  <img :src="product.image" alt="Placeholder image" />
-                </figure>
-              </div>
-              <div class="media-content pt-2">
-                <p class="is-5">{{ product.title }}</p>
-                <div >
-                  <div>
-                    <!-- ราคาสินค้า------------------------------------------------ -->
-                    <span class="is-6 has-text-danger"
-                      >{{ product.price }}
-                    </span>
-                  </div>
-                  <div style="justify-content: center; display: flex;">
-                    <!-- ลดสินค้า------------------------------------------------ -->
-                    <button @click="quantityLob(product, index)">-</button>
-                    <!-- จำนวนสินค้า----------------------------------------------- -->
-                    <p>{{ product.quantity }}</p>
-                    <!-- เพิ่มสินค้า----------------------------------------------- -->
-                    <button @click="quantityPlush(product)">+</button>
-                    <span>{{product.price * product.quantity}}</span>
-                  </div>
-                </div>
-              </div>
-
-                  {
-        "id":2,
-        "first_name":"Sunthorn",
-        "last_name":"Nongsun",
-        "role":"customer",
-        "phone":"0953137111",
-        "email":"Sunthorn@gmail.com",
-       "image":"https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_f425b9f1-f593-4164-9ae3-da7c027f79b2_360x.jpg?v=1672342192"
-    }
+  {
+     "id":3,
+     "title":"Crissie Bird's Nest Fern",
+     "price":450,
+     "quantity":0,
+     "type":"calathea",
+     "detail":"Light: Indirect to bright indirect light Water: Prefers well-draining soil and should be watered when the top 1"-2" of soil is dry. Non-toxic to pets!",
+     "image":"https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_c2954cfc-8d16-4dc2-b3e9-4b3745dccd62_1024x1024@2x.jpg?v=1677701613"
+  },
+    {
+     "id":4,
+     "title":"Dracaena 'Michiko'",
+     "price":650,
+     "quantity":0,
+     "type":"hoya",
+     "detail":"Species of Dracaena have a secondary thickening meristem in their trunk, termed Dracaenoid thickening by some authors",
+     "image":"https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_7abcf3b2-ee11-48fd-9c8e-209842dd288b_1024x1024@2x.jpg?v=1677701624"
+  }
+  เพิ่มตารางออกเดอร์

@@ -120,13 +120,13 @@ export default {
     };
   },
   methods: {
-    Save(user_info) {
-      this.disabled = true;
-      user_info.first_name = this.e_first_name
-      user_info.last_name = this.e_last_name
-      user_info.phone = this.e_phone
-      user_info.email = this.e_email
-    },
+    // Save(user_info) {
+    //   this.disabled = true;
+    //   user_info.first_name = this.e_first_name
+    //   user_info.last_name = this.e_last_name
+    //   user_info.phone = this.e_phone
+    //   user_info.email = this.e_email
+    // },
   },
 };
 </script>

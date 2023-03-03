@@ -70,9 +70,7 @@
     <div class="control has-text-centered">
       <button
         class="button has-background-success-dark has-text-white has-text-weight-bold is-rounded"
-        @click="
-          Signup(role, firstname, lastname, email, password, confirmpassword)
-        "
+        
       > <router-link to="/login" class="has-text-black"
             >CREATE</router-link
           >
@@ -95,17 +93,23 @@ export default {
     };
   },
   methods: {
-    Signup(role, firstname, lastname, email, password, confirmpassword) {
-      this.signup.push({
-        role: role,
-        firstname: firstname,
-        lastname: lastname,
-        email: email,
-        password: password,
-        confirmpassword: confirmpassword,
-      });
-      localStorage.setItem("allUser", JSON.stringify(this.signup));
-    },
+    // Signup(role, firstname, lastname, email, password, confirmpassword) {
+    //   this.role = role;
+    //   this.firstname = firstname;
+    //   this.lastname = lastname;
+    //   this.email = email;
+    //   this.password = password;
+    //   this.confirmpassword = confirmpassword;
+    //   this.signup.push({
+    //     role: this.role,
+    //     firstname: this.firstname,
+    //     lastname: this.lastname,
+    //     email: this.email,
+    //     password: this.password,
+    //     confirmpassword: this.confirmpassword,
+    //   });
+    //   localStorage.setItem("allUser", JSON.stringify(this.signup));
+    // },
   },
 };
 </script>

@@ -42,9 +42,9 @@ const routes = [
         component: () => import('../views/Payment.vue') // set home as path '/'
     },
     {
-        path: '/addProduct',
-        name: 'Addproduct',
-        component: () => import('../views/AddProduct.vue') // set home as path '/'
+        path: '/manageProduct',
+        name: 'Manageproduct',
+        component: () => import('../views/ManageProduct.vue') // set home as path '/'
     }
 ]
 

@@ -32,17 +32,18 @@
       </div>
 
       <div class="has-text-centered">
-        <button class="button has-background-success-dark has-text-weight-bold is-rounded" @click="gotoShop()">
-          <router-link to="/allProduct" class="has-text-white"
-            >SIGN IN
-          </router-link>
+        <button class="button has-background-success-dark has-text-weight-bold is-rounded" @click="loginCustomer()">
+          SIGN IN Customer
+        </button>
+      </div>
+      <div class="has-text-centered mt-4">
+        <button class="button has-background-success-dark has-text-weight-bold is-rounded" @click="loginSeller()">
+          SIGN IN Seller
         </button>
       </div>
       <div>
         <p class="has-text-centered mt-4">
-          <router-link to="/signup" class="has-text-black"
-            >Create account</router-link
-          >
+          Create account
         </p>
       </div>
     </div>
@@ -50,23 +51,40 @@
 </template>
 
 <script>
+import users from '../views/user.json'
 export default {
   data() {
     return {
       email: "",
       password: "",
-      user: [],
+      users: users,
     };
   },
   methods: {
-    gotoShop() {
-      localStorage.setItem("user", JSON.stringify(this.user));
-      console.log(localStorage.setItem("user", JSON.stringify(this.user)))
+    loginSeller(){
+      if(this.email === "63070125@gmail.com" && this.password === "012345"){
+        alert("User is Seller")
+        this.$router.push({ path: '/manageProduct'})
+      }
+      else if(this.email === "" || this.password === ""){
+        alert("Please input your data")
+      }
+      else{
+        alert("User is NOT Seller")
+      }
     },
-  },
-  created() {
-    this.user = JSON.parse(localStorage.getItem("allUser"));
-    console.log(this.user = JSON.parse(localStorage.getItem("allUser")))
+    loginCustomer() {
+      if(this.email === "Sunthorn@gmail.com" && this.password === "123456"){
+        alert("User is Customer")
+        this.$router.push({ path: '/allProduct'})
+      }
+      else if(this.email === "" || this.password === ""){
+        alert("Please input your data")
+      }
+      else{
+        alert("User is NOT Customer")
+      }
+    },
   },
 };
 </script>

@@ -3,7 +3,7 @@
   <div class="columns">
     <div class="column"></div>
 
-    <!-- Column แสดงสินค้า----------------->
+    <!-- Column แสดงสินค้า-------->
     <div class="column is-12 pt-6 mr-6">
       <h1 class="is-size-5 mr-6 mb-2">All Products ({{ products.length }})</h1>
 
@@ -44,7 +44,7 @@
                   <div class="media-content">
                     <p id="title" class="title is-5">{{ value.title }}</p>
                     <p id="price" class="price is-5 has-text-danger">
-                      Price {{ value.price }} Bath
+                      Price {{ value.price }} Baht
                     </p>
                   </div>
                 </div>
@@ -66,9 +66,6 @@
                     <button class="button has-background-warning is-rounded">
                       Add
                     </button>
-                    <!-- <button class="button has-background-warning is-rounded">
-                    Edit
-                  </button> -->
                   </div>
                 </div>
               </div>
@@ -109,7 +106,7 @@
           <div class="column is-12 pt-6 pr-5 has-background-primary-light">
             <div style="display: flex; justify-content: space-between">
               <span class="is-size-4 mb-4">Cart ({{ cart.length }})</span>
-              <a class="is-danger mb-4 button" @click="cart = []">Clear</a>
+              <!-- <a class="is-danger mb-4 button" @click="Clear()">Clear</a> -->
             </div>
 
             <!-- Card element start here-->
@@ -136,15 +133,15 @@
                         style="display: flex; justify-content: space-between"
                       >
                         <!-- ลดสินค้า--->
-                        <button @click="quantityLob(product, index)">-</button>
+                        <button @click="quantityDel(product, index)">-</button>
                         <!-- จำนวนสินค้า-->
                         <p>{{ product.quantity }}</p>
                         <!-- เพิ่มสินค้า-->
-                        <button @click="quantityPlush(product)">+</button>
+                        <button @click="quantityPlus(product)">+</button>
                         <span>{{ product.price * product.quantity }}</span>
                       </div>
                       <div>
-                        <!-- icon รูปถังขยะ--->
+                        <!-- ลบออกจาก cart--->
                         <span
                           class="icon mr-2"
                           key="false"
@@ -185,7 +182,7 @@ export default {
       show_modal: false,
       modal_info: false,
       modal_cart: false,
-      info: { id: 0, image: "", detail: "" }, //เลือกตัวไหนไว้ ให้แสดง modal กดแล้วเปลี่ยน
+      info: { id: 0, image: "", detail: "" },
       plant_type:'',
       products: products,
     };
@@ -210,16 +207,22 @@ export default {
     gotoPay() {
       localStorage.setItem("allCart", JSON.stringify(this.cart));
     },
-    quantityLob(product, index) {
+    quantityDel(product, index) {
       product.quantity--;
       if (product.quantity <= 0) {
-        // product.quantity = 0;
         this.cart.splice(index, 1);
       }
     },
-    quantityPlush(product) {
+    quantityPlus(product) {
       product.quantity++;
     },
+    // Clear(){
+    //   this.cart = []
+      
+    // }
+  },
+  created() {
+    this.products = JSON.parse(localStorage.getItem("ManagePD"));
   },
   computed: {
     totalPrice() {
@@ -234,7 +237,6 @@ export default {
     }
   },
   watch:{
-    
   }
 };
 </script>

@@ -6,6 +6,7 @@
        "role": "seller",
        "phone":"0953137777",
        "email":"63070125@gmail.com",
+       "password": "012345",
        "image":"https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_73dcd44c-6947-43cf-a2fc-f64f2c52e387_360x.jpg?v=1676495614"
     },
     {
@@ -15,6 +16,7 @@
         "role":"customer",
         "phone":"0953137111",
         "email":"Sunthorn@gmail.com",
+        "password": "123456",
        "image":"https://cdn.shopify.com/s/files/1/0082/4701/7531/products/image_f425b9f1-f593-4164-9ae3-da7c027f79b2_360x.jpg?v=1672342192"
     }
   ]
